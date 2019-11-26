@@ -18,7 +18,7 @@ export const CommandBig = styled.div`
   text-align: center;
   color: var(--green);
   margin-top: 0;
-  font-size: 5em;
+  font-size: var(--big-font-size);
 `;
 
 export const AppContainer = styled.div`
@@ -38,6 +38,14 @@ export const InputsContainer = styled.div`
   flex-grow: 0;
 `;
 
+export const BoxShadowFocusContainer = styled.div<{ active: boolean }>`
+  height: 6em;
+  box-shadow: 0 0.2em 0 0 ${props => (props.active ? "white" : "transparent")};
+  margin-top: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+`;
+
 export const CharInput = styled.input`
   color: white;
   text-align: center;
@@ -48,9 +56,6 @@ export const CharInput = styled.input`
   font-size: 4.8em;
   width: 1em;
   height: 1em;
-
-  margin-left: 0.4em;
-  margin-right: 0.4em;
 
   :focus {
     outline: none;

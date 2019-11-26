@@ -2,8 +2,9 @@ body {
   --grey: rgb(97, 97, 97);
   --green: rgb(52, 190, 52);
   --purple-blue: rgb(42, 39, 58);
-  --gold: #8b7e06;
-  font-size: 12px;
+  --base-font-size: 12px;
+  --big-font-size: 4em;
+  font-size: var(--base-font-size);
   background-color: var(--purple-blue);
   margin: auto 0;
   font-family: Fira Code, source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

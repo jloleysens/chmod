@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import styled from "styled-components";
-import { CharInput } from ".";
+import { CharInput, BoxShadowFocusContainer } from ".";
 
 export interface Props {
   onKeyDown: (ev: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -8,11 +7,6 @@ export interface Props {
   value: string;
   selected: boolean;
 }
-
-const BoxShadowFocusContainer = styled.div`
-  height: 5.3em;
-  box-shadow: 0 0.2em 0 0 white;
-`;
 
 export const Input = ({ onKeyDown, onClick, value, selected }: Props) => {
   const refInput = useRef<HTMLInputElement | null>(null);
@@ -35,8 +29,9 @@ export const Input = ({ onKeyDown, onClick, value, selected }: Props) => {
     />
   );
 
-  if (selected) {
-    return <BoxShadowFocusContainer>{render()}</BoxShadowFocusContainer>;
-  }
-  return render();
+  return (
+    <BoxShadowFocusContainer active={selected}>
+      {render()}
+    </BoxShadowFocusContainer>
+  );
 };

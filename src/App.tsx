@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer } from "react";
 
 import { reducer, initialChars } from "./reducer";
+import * as numericMode from "./numeric-mode";
 
 import {
   CommandBig,
@@ -21,6 +22,14 @@ export const App: React.FC = () => {
 
   const getCharSelector = (idx: number) => () =>
     dispatch({ type: "select", payload: { idx } });
+
+  console.log(
+    numericMode.calculate({
+      owner: chars[0].value,
+      group: chars[1].value,
+      other: chars[2].value
+    })
+  );
 
   const getBackspaceHandler = (idx: number) => (
     eve: React.KeyboardEvent<HTMLInputElement>
