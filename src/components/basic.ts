@@ -84,5 +84,5 @@ export const Panel = styled.div`
 `;
 
 export const Spacer = styled.div`
-  margin: 1rem;
+  height: 1rem;
 `;
