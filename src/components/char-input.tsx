@@ -4,11 +4,18 @@ import { CharInput, BoxShadowFocusContainer } from ".";
 export interface Props {
   onKeyDown: (ev: React.KeyboardEvent<HTMLInputElement>) => void;
   onClick: (ev: React.MouseEvent<HTMLInputElement>) => void;
+  onFocus: (ev: React.FocusEvent<HTMLInputElement>) => void;
   value: string;
   selected: boolean;
 }
 
-export const Input = ({ onKeyDown, onClick, value, selected }: Props) => {
+export const Input = ({
+  onFocus,
+  onKeyDown,
+  onClick,
+  value,
+  selected
+}: Props) => {
   const refInput = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -22,6 +29,7 @@ export const Input = ({ onKeyDown, onClick, value, selected }: Props) => {
       ref={refInput}
       maxLength={1}
       onChange={() => {}}
+      onFocus={onFocus}
       onKeyDown={onKeyDown}
       onClick={onClick}
       type="text"

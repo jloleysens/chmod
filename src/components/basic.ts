@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HorizontalSpaceSmall = styled.div`
-  width: 0.5em;
+  width: 0.5rem;
 `;
 
 export const Pink = styled.span`
@@ -24,12 +24,12 @@ export const CommandBig = styled.div`
 export const AppContainer = styled.div`
   display: flex;
   flex-basis: 500px;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
 
   align-items: center;
 
-  margin-top: 3em;
+  margin-top: 25vh;
 `;
 
 export const InputsContainer = styled.div`
@@ -39,11 +39,11 @@ export const InputsContainer = styled.div`
 `;
 
 export const BoxShadowFocusContainer = styled.div<{ active: boolean }>`
-  height: 6em;
-  box-shadow: 0 0.2em 0 0 ${props => (props.active ? "white" : "transparent")};
-  margin-top: 1em;
-  margin-left: 1em;
-  margin-right: 1em;
+  height: 4rem;
+  box-shadow: 0 0.2rem 0 0 ${props => (props.active ? "white" : "transparent")};
+  margin-top: 0.6rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 `;
 
 export const CharInput = styled.input`
@@ -53,11 +53,36 @@ export const CharInput = styled.input`
   background-color: transparent;
   font: inherit;
 
-  font-size: 4.8em;
-  width: 1em;
-  height: 1em;
+  font-size: var(--big-font-size);
+  width: var(--big-font-size);
+  height: var(--big-font-size);
 
   :focus {
     outline: none;
   }
+`;
+
+export const HeaderContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const PanelContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+`;
+
+export const Panel = styled.div`
+  display: flex;
+  justify-content: center;
+  color: white;
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: 100%;
+`;
+
+export const Spacer = styled.div`
+  margin: 1rem;
 `;

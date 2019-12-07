@@ -12,6 +12,8 @@ export type Action =
   | { type: "set"; payload: { idx: number; value: string } }
   | { type: "unsetCurrent"; payload: { idx: number } }
   | { type: "unsetPrevious"; payload: { idx: number } }
+  | { type: "selectPrevious"; payload: undefined }
+  | { type: "selectNext"; payload: undefined }
   | { type: "select"; payload: { idx: number } };
 
 export const reducer: Reducer<State, Action> = (chars, action) => {
@@ -70,6 +72,38 @@ export const reducer: Reducer<State, Action> = (chars, action) => {
       return {
         ...char,
         selected: idx === cIdx
+      };
+    });
+  }
+
+  if (action.type === "selectPrevious") {
+    let toSelect = -1;
+    return chars
+      .reverse()
+      .map((char, idx) => {
+        if (char.selected) {
+          toSelect = chars.length - 1 - idx - 1;
+        }
+        if (toSelect > -1) {
+          return {
+            ...char,
+            selected: toSelect === chars.length - 1 - idx
+          };
+        }
+        return char;
+      })
+      .reverse();
+  }
+
+  if (action.type === "selectNext") {
+    let toSelect = -1;
+    return chars.map((char, idx) => {
+      if (char.selected) {
+        toSelect = idx + 1 === chars.length ? idx : idx + 1;
+      }
+      return {
+        ...char,
+        selected: toSelect === idx
       };
     });
   }

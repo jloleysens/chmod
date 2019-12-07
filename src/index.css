@@ -2,8 +2,9 @@ body {
   --grey: rgb(97, 97, 97);
   --green: rgb(52, 190, 52);
   --purple-blue: rgb(42, 39, 58);
+  --purple-blue-darker: rgb(35, 32, 51);
   --base-font-size: 12px;
-  --big-font-size: 4em;
+  --big-font-size: 4rem;
   font-size: var(--base-font-size);
   background-color: var(--purple-blue);
   margin: auto 0;
