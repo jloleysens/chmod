@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from "react";
-import { CharInput, BoxShadowFocusContainer } from ".";
+import React, { useRef, useEffect } from 'react';
+import { CharInput, BoxShadowFocusContainer } from '.';
 
 export interface Props {
   onKeyDown: (ev: React.KeyboardEvent<HTMLInputElement>) => void;

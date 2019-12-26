@@ -6,3 +6,5 @@ export enum KeyCode {
   seven = 55,
   nine = 57
 }
+
+export const MOBILE_SCREEN_THRESHOLD = `700px`;

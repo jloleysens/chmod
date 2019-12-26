@@ -1,7 +1,8 @@
-import React, { useEffect, useReducer } from "react";
-import { KeyCode } from "./constants";
-import { reducer, initialChars } from "./reducer";
-import * as numericMode from "./numeric-mode";
+import React, { useEffect, useReducer } from 'react';
+import styled from 'styled-components';
+import { KeyCode, MOBILE_SCREEN_THRESHOLD } from './constants';
+import { reducer, initialChars } from './reducer';
+import * as numericMode from './numeric-mode';
 
 import {
   CommandBig,
@@ -16,30 +17,42 @@ import {
   PanelContainer,
   HeaderContainer,
   Spacer
-} from "./components";
+} from './components';
+
+const ChmodTitle = styled(CommandBig)`
+  @media screen and (max-width: ${MOBILE_SCREEN_THRESHOLD}) {
+    justify-content: center;
+  }
+`;
+
+const FileName = styled(CommandBig)`
+  @media screen and (max-width: ${MOBILE_SCREEN_THRESHOLD}) {
+    display: none;
+  }
+`;
 
 const focusFirstInput = () => {
-  document.querySelector("input")!.focus();
+  document.querySelector('input')!.focus();
 };
 
 export const App: React.FC = () => {
   const [chars, dispatch] = useReducer(reducer, initialChars);
 
   const getCharSelector = (idx: number) => () =>
-    dispatch({ type: "select", payload: { idx } });
+    dispatch({ type: 'select', payload: { idx } });
 
   useEffect(() => {
     const lrHandler = (eve: KeyboardEvent) => {
       if (KeyCode.left === eve.keyCode) {
         eve.preventDefault();
-        dispatch({ payload: undefined, type: "selectPrevious" });
+        dispatch({ payload: undefined, type: 'selectPrevious' });
       } else if (KeyCode.right === eve.keyCode) {
         eve.preventDefault();
-        dispatch({ payload: undefined, type: "selectNext" });
+        dispatch({ payload: undefined, type: 'selectNext' });
       }
     };
-    document.body.addEventListener("keydown", lrHandler);
-    return () => document.body.removeEventListener("keydown", lrHandler);
+    document.body.addEventListener('keydown', lrHandler);
+    return () => document.body.removeEventListener('keydown', lrHandler);
   }, []);
 
   const getBackspaceHandler = (idx: number) => (
@@ -51,13 +64,13 @@ export const App: React.FC = () => {
         return;
       }
       if (chars[idx].value) {
-        dispatch({ payload: { idx }, type: "unsetCurrent" });
+        dispatch({ payload: { idx }, type: 'unsetCurrent' });
       } else {
-        dispatch({ payload: { idx }, type: "unsetPrevious" });
+        dispatch({ payload: { idx }, type: 'unsetPrevious' });
       }
     } else if (keyCode >= KeyCode.zero && keyCode <= KeyCode.seven) {
       dispatch({
-        type: "set",
+        type: 'set',
         payload: { idx, value: String.fromCharCode(keyCode) }
       });
     }
@@ -76,10 +89,10 @@ export const App: React.FC = () => {
   return (
     <AppContainer>
       <HeaderContainer>
-        <CommandBig>
+        <ChmodTitle>
           <Pink>❯</Pink>
           <HorizontalSpaceSmall /> chmod
-        </CommandBig>
+        </ChmodTitle>
         <InputsContainer>
           {chars.map((char, idx) => {
             return (
@@ -94,10 +107,10 @@ export const App: React.FC = () => {
             );
           })}
         </InputsContainer>
-        <CommandBig>
+        <FileName>
           <HorizontalSpaceSmall />
           <Grey> ./file</Grey>
-        </CommandBig>
+        </FileName>
       </HeaderContainer>
       <Spacer />
       <PanelContainer>
